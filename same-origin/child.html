@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+	<button class='button-child'>CHILD BUTTON</button>
+   	<script>
+		const event = new CustomEvent('my_event', { detail: { data:'from child' }})
+		const handler = (e) => console.log('message from parent', e.detail);
+
+		window.document.addEventListener('my_event', handler, false)
+
+		document.querySelector('.button-child').onclick = () => {
+			window.parent.document.dispatchEvent(event)
+		}
+
+
+    </script>
+</body>
+</html>
